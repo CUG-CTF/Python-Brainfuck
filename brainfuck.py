@@ -15,6 +15,7 @@ def execute(filename):
 
 
 def evaluate(code):
+  f=open("output.bin","aw")
   code     = cleanup(list(code))
   bracemap = buildbracemap(code)
 
@@ -38,7 +39,7 @@ def evaluate(code):
 
     if command == "[" and cells[cellptr] == 0: codeptr = bracemap[codeptr]
     if command == "]" and cells[cellptr] != 0: codeptr = bracemap[codeptr]
-    if command == ".": sys.stdout.write(chr(cells[cellptr]))
+    if command == ".": f.write(chr(cells[cellptr]))
     if command == ",": cells[cellptr] = ord(getch.getch())
       
     codeptr += 1
